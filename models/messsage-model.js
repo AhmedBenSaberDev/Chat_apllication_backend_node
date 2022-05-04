@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const MessageShema = new mongoose.Schema({
-    conversation:{type:mongoose.SchemaTypes.ObjectId,ref:"Conversation"},
+    conversationId:{type:mongoose.SchemaTypes.ObjectId,ref:"Conversation"},
     senderId:{type:mongoose.SchemaTypes.ObjectId,ref:'User'},
     content:{type:String}
 },
@@ -11,4 +11,4 @@ const MessageShema = new mongoose.Schema({
 
 const MessageModel = mongoose.model('Message',MessageShema);
 
-export default MessageModel;
+module.exports =  MessageModel;

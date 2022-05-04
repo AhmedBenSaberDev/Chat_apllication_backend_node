@@ -11,6 +11,12 @@ const cors = require("cors");
 // User routes
 const userRoutes = require('./routes/user-routes');
 
+// Conversation routes
+const conversationRoutes = require('./routes/conversation-routes');
+
+// message routes
+const messageRoutes = require('./routes/message-routes');
+
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
@@ -23,6 +29,12 @@ app.use(cors({
 
 // user routes
 app.use('/api/user',userRoutes);
+
+// Conversation routes
+app.use('/api/conversation',conversationRoutes);
+
+// message routes
+app.use('/api/message',messageRoutes);
 
 app.use((req,res,next) => {
     return res.status(404).json({message:"Route not found"})
