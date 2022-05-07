@@ -90,9 +90,7 @@ io.on('connection',(socket)=>{
     });
 
     socket.on("calluser",({userToCall,signalData,from}) =>{
-        console.log(userToCall,signalData);
-        // socket.in(userToCall).emit("callUser", { signal: signalData, from })
-        socket.in(userToCall).emit("test");
+        socket.in(userToCall).emit("callUser", { signal: signalData, from })
     })
 
     socket.on('answercall',(data) => {
