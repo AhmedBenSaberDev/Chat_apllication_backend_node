@@ -91,7 +91,7 @@ module.exports.login = async (req, res) => {
         return res.status(500).json({message:"An error occured"});
     }
 
-   return res.json({userId:user._id,email:user.email,token:token,friendRequests:user.friendRequests});
+   return res.json({userId:user._id,email:user.email,token:token,friendRequests:user.friendRequests,image:user.image});
 
 };
 
@@ -100,7 +100,7 @@ module.exports.googleAuth = async (req,res) => {
 
     try {
         const response = await client.verifyIdToken({idToken:tokenId , audience:process.env.GOOGLE_CLIENT_ID});
-        const {email , email_verified , name} = response.payload;
+        const {email , email_verified , name } = response.payload;
 
         if(email_verified){
 
@@ -113,7 +113,7 @@ module.exports.googleAuth = async (req,res) => {
                         userId:user.id,
                         email:user.email
                     },process.env.JSON_CRYPTO_KEY)
-                    return res.json({userId:user.id,email:user.email,token:token,friendRequests:user.friendRequests});
+                    return res.json({userId:user.id,email:user.email,token:token,friendRequests:user.friendRequests,image:user.image});
                 }else{
                     let password = email + process.env.JSON_CRYPTO_KEY;
                     let newUser = new UserModel({
@@ -130,7 +130,7 @@ module.exports.googleAuth = async (req,res) => {
                                 userId:data.id,
                                 email:data.email
                             },process.env.JSON_CRYPTO_KEY)
-                            return res.json({userId:data.id,email:data.email,token:token,friendRequests:newUser.friendRequests});
+                            return res.json({userId:data.id,email:data.email,token:token,friendRequests:newUser.friendRequests,image:newUser.image});
                         }
                     })
                 }

@@ -9,7 +9,7 @@ const userSchema = new Schema({
     userName:{type:String,required:true},
     email:{type:String,required:true,unique:true},
     password:{type:String,required:true},
-    image:{type:String,required:true,default:"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"},
+    image:{type:String,required:false},
     friends:[{type:mongoose.SchemaTypes.ObjectId,ref:'User'}],
     friendRequests:[{type:mongoose.SchemaTypes.ObjectId,ref:'User'}],
     verified:{type:Boolean,default:false}

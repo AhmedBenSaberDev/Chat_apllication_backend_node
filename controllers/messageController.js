@@ -21,8 +21,9 @@ module.exports.createMessage = async (req,res) =>{
 module.exports.getMessages = async (req,res) => {
     try {
         const messages = await MessageModel.find({
-            conversartionId:req.params.conversationId
+            conversationId:req.params.conversationId
         });
+        console.log(req.params.conversationId);
         return res.json(messages);
     } catch (error) {
         return res.status(500).json({message:'An error occured , Please try again later'});
