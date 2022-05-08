@@ -59,7 +59,7 @@ server.listen(process.env.PORT,() => {
 
 const io = require('socket.io')(server,{
     cors:{
-        origin:"http://localhost:3000"
+        origin:"https://taupe-madeleine-0f9dab.netlify.app"
     },
     pingTimeout:60000
 });
@@ -67,14 +67,12 @@ const io = require('socket.io')(server,{
 io.on('connection',(socket)=>{
 
     socket.on('setup',(userId) => {
-        console.log(userId);
         socket.join(userId);
         socket.emit('connected');
     });
 
     socket.on('join chat',(roomId) => {
         socket.join(roomId);
-        console.log("user joinded rooom " + roomId);
     });
 
     socket.on('new message',(data) => {
